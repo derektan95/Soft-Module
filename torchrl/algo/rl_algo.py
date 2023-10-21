@@ -5,7 +5,11 @@ import numpy as np
 
 import torch
 
-import torchrl.algo.utils as atu
+#import torchrl.algo.utils as atu
+import sys
+sys.path.append('..')
+sys.path.append('../..')
+import algo.utils as atu
 
 import gym
 

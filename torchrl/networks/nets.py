@@ -2,8 +2,10 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import torchrl.networks.init as init
-
+#import torchrl.networks.init as init
+import sys
+sys.path.append('..')
+import networks.init as init
 
 class ZeroNet(nn.Module):
     def forward(self, x):

@@ -1,3 +1,10 @@
+import sys
+sys.path.append(".")
+sys.path.append("..")
+sys.path.append("../..")
+sys.path.append("./torchrl")
+sys.path.append("../../../metaworld")
+
 
 import torch
 import copy

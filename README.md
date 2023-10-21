@@ -11,7 +11,7 @@ Our project page is at [https://rchalyang.github.io/SoftModule/](https://rchalya
 ## Setup Environment
 
 ### Environement Requirements
-* Python 3
+* Python 3.8
 * Pytorch 1.7
 * posix_ipc
 * tensorboardX
@@ -24,11 +24,24 @@ We evaluated our method on [MetaWorld](https://meta-world.github.io).
 
 Since [MetaWorld](https://meta-world.github.io) is under active development, we perform all the experiment on our forked MetaWorld(https://github.com/RchalYang/metaworld).
 
-```
+```bash
 #Our MetaWorld installation
 git clone https://github.com/RchalYang/metaworld.git
 cd metaworld
 pip install -e .
+
+#It's ok if you if system insists on mujoco200. You may proceed with installing mujoco210-py following: 
+# REFERENCE: https://gist.github.com/saratrajput/60b1310fe9d9df664f9983b38b50d5da
+# Mujoco Keys: https://www.roboti.us/file/mjkey.txt
+
+
+# If cython gives you issue during installation
+# REFERENCE: https://github.com/openai/mujoco-py/issues/773
+pip install "cython<3"
+
+# If gym gives you issues with 'tags'
+# REF: https://github.com/openai/roboschool/issues/208
+pip install gym==0.15.4
 ```
 
 ## Our Network Structure

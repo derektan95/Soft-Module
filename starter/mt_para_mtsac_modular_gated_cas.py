@@ -1,5 +1,9 @@
 import sys
 sys.path.append(".")
+sys.path.append("..")
+sys.path.append("../..")
+sys.path.append("./torchrl")
+sys.path.append("./metaworld")
 
 import torch
 
@@ -27,7 +31,7 @@ from torchrl.algo import MTSAC
 from torchrl.collector.para import ParallelCollector
 from torchrl.collector.para import AsyncParallelCollector
 from torchrl.collector.para.mt import SingleTaskParallelCollectorBase
-from torchrl.collector.para.async_mt import AsyncSingleTaskParallelCollector
+# from torchrl.collector.para.async_mt import AsyncSingleTaskParallelCollector
 from torchrl.collector.para.async_mt import AsyncMultiTaskParallelCollectorUniform
 
 from torchrl.replay_buffers.shared import SharedBaseReplayBuffer
@@ -90,6 +94,8 @@ def experiment(args):
         em_input_shape=np.prod(example_embedding.shape),
         output_shape=1,
         **params['net'])
+    
+    print(qf1)
 
     if args.qf1_snap is not None:
         qf1.load_state_dict(torch.load(args.qf2_snap, map_location='cpu'))

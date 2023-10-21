@@ -1,3 +1,5 @@
+import sys
+sys.path.append("../..")
 
 import gym
 from gym import Wrapper
@@ -6,8 +8,6 @@ import numpy as np
 from metaworld.envs.mujoco.sawyer_xyz import *
 from metaworld.envs.mujoco.multitask_env import MultiClassMultiTaskEnv
 from metaworld.core.serializable import Serializable
-import sys
-sys.path.append("../..")
 from torchrl.env.continuous_wrapper import *
 from torchrl.env.get_env import wrap_continuous_env
 
