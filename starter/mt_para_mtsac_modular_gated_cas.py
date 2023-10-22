@@ -42,6 +42,9 @@ from metaworld_utils.meta_env import get_meta_env
 
 import random
 
+import tensorboardX
+# from torchview import draw_graph
+
 def experiment(args):
 
     device = torch.device("cuda:{}".format(args.device) if args.cuda else "cpu")
@@ -95,7 +98,18 @@ def experiment(args):
         output_shape=1,
         **params['net'])
     
+    test = networks.ModularGatedCascadeCondNet( 
+        input_shape=env.observation_space.shape[0] + env.action_space.shape[0],
+        em_input_shape=np.prod(example_embedding.shape),
+        output_shape=1,
+        **params['net'])
+
     print(qf1)
+
+    tf_writer = tensorboardX.SummaryWriter("./log/model_viz")
+    tf_writer.add_graph(test, (torch.zeros(1, env.observation_space.shape[0] + env.action_space.shape[0]), torch.zeros(1, np.prod(example_embedding.shape))))
+    tf_writer.close()
+    print("Graph logged")
 
     if args.qf1_snap is not None:
         qf1.load_state_dict(torch.load(args.qf2_snap, map_location='cpu'))
